@@ -1,5 +1,3 @@
-
-
 #!/usr/bin/env python3
 
 from puresnmp import walk
@@ -40,3 +38,4 @@ print("\t}\n")
 
 # Print ultima quebra de linha e adiciona um ]
 print("]")
+
