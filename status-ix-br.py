@@ -24,9 +24,9 @@ def parse_result(html):
                 item_name = item.text.strip()
                 print("\t")
                 print("\t{\n")
-                print(f'\t\t"{"{#IX}"}": "{name}",')
-                print(f'\t\t"{"{#IX2}"}": "{item_name}",')
-                print(f'\t\t"{"{#STATUS}"}": "{status}"')
+                print(f'\t\t"{"{#IX_ESTADO}"}": "{name}",')
+                print(f'\t\t"{"{#IX}"}": "{item_name}",')
+                print(f'\t\t"{"STATUS"}": "{status}"')
                 print("\t},\n")
     return data
 
