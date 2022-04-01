@@ -5,13 +5,15 @@ import sys
 
 # Variaveis
 OID = '.1.3.6.1.4.1.3902.1082.500.10.2.3.3.1.2'
+IP = '192.168.20.22'
+COM = 'uKV9efW2rxD9j'
 params = sys.argv
 
 # Print inicio
 print("[")
 
 # Laço para cada index encontrado no snmpwalk
-for row in walk(params[0], params[1], OID):
+for row in walk(IP, COM, OID):
     # Oid completa
     oidfull = (row[0])
     # Pega o index
@@ -38,9 +40,7 @@ for row in walk(params[0], params[1], OID):
     print(f'\t\t"{"{#ONU_NAME}"}": "{onuname}"')
     print("\t},\n")
 
-print("\t{\n")
-print(f'\t\t"{"{#STATUS}"}": "OK"')
-print("\t}\n")
+print("\t\t{}")
 
 # Print final
 print("]")
