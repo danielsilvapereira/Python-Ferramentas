@@ -2,6 +2,7 @@
 
 from bs4 import BeautifulSoup
 import requests
+import re
 
 def request():
     url = "https://status.ix.br"
@@ -22,12 +23,22 @@ def parse_result(html):
                 status = status_div.text.strip()
                 status_div.decompose()
                 item_name = item.text.strip()
+                if name == 'IX-br - Outras Localidades':
+                    ix_grupo = re.sub('.*- ', '', name)
+                    ix_nome = re.sub('IX.br ', '', item_name)
+                    ix_localizacao = ix_nome
+                else:
+                    ix_grupo = re.sub('IX.br ', '', name)
+                    ix_nome = re.sub(' -.*', '', item_name)
+                    ix_localizacao = re.sub('.*- IX.br ', '', item_name)
+
                 print("\t")
-                print("\t{\n")
-                print(f'\t\t"{"{#IX_ESTADO}"}": "{name}",')
-                print(f'\t\t"{"{#IX}"}": "{item_name}",')
-                print(f'\t\t"{"STATUS"}": "{status}"')
-                print("\t},\n")
+                print("\t{")
+                print(f'\t\t"{"IX_GRUPO"}": "{ix_grupo}",')
+                print(f'\t\t"{"IX_LOCALIZACAO"}": "{ix_localizacao}",')
+                print(f'\t\t"{"IX_NOME"}": "{ix_nome}",')
+                print(f'\t\t"{"IX_STATUS"}": "{status}"')
+                print("\t},")
     return data
 
 if __name__ == '__main__':
